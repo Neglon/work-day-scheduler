@@ -15,16 +15,6 @@ $(function () {
 
 
 
-  // TODO: Add a listener for click events on the save button. This code should
-  // use the id in the containing time-block as a key to save the user input in
-  // local storage. HINT: What does `this` reference in the click listener
-  // function? How can DOM traversal be used to get the "hour-x" id of the
-  // time-block containing the button that was clicked? How might the id be
-  // useful when saving the description in local storage?
-
-
-
-
   
   //.each iterates the following function over every element with the time-block class
   $('.time-block').each(function() {
@@ -35,7 +25,7 @@ $(function () {
     var currentHour = dayjs().hour();
     console.log(currentHour)
     
-    // Remove the class the time block may have       additional note  $(this) refers to the specific element that the .each is iterating through, saying THIS right here
+    // Remove the class the time block may have  ***additional note  $(this) refers to the specific element that the .each is iterating through, saying THIS right here
     $(this).removeClass('past present future');
 
     // Check to see if the time block is befor during or after the current time and set the appropriate class
@@ -51,15 +41,35 @@ $(function () {
 
 
 
-  // TODO: Add code to apply the past, present, or future class to each time
-  // block by comparing the id to the current hour. HINTS: How can the id
-  // attribute of each time-block be used to conditionally add or remove the
-  // past, present, and future classes? How can Day.js be used to get the
-  // current hour in 24-hour time?
-  //
+
   // TODO: Add code to get any user input that was saved in localStorage and set
   // the values of the corresponding textarea elements. HINT: How can the id
   // attribute of each time-block be used to do this?
-  //
-  // TODO: Add code to display the current date in the header of the page.
+
+
+  //jquery event listner for on click of a saveBtn
+  $('.saveBtn').on('click', function() {
+    // this specifically targets which button was clicked then finds the closest parent element with class time-block, sets that element to timeBlock
+    var timeBlock = $(this).closest('.time-block'); // Traverse DOM to find the parent time block
+    console.log(timeBlock);
+    //variable that takes the id and gives that info to timeBlockID
+    var timeBlockId = timeBlock.attr('id'); 
+    //userInput will find the class description, and take the value with in it and apply that to the variable. Should be text that was entered in the textarea
+    var userInput = timeBlock.find('.description').val(); 
+    console.log(timeBlockId);
+    console.log(userInput);
+
+    // Saves the variable of timeBlockID as the key, and what the user typed in as the value, 
+    localStorage.setItem(timeBlockId, userInput);
+  });
+
+  //iterate through each time block to get and display any saved infor in local storage
+  $('.time-block').each(function() {
+    var timeBlockId = $(this).attr('id');
+    var savedData = localStorage.getItem(timeBlockId);
+    if (savedData) {
+        $(this).find('.description').val(savedData);
+    }
+  });
+ 
 });
