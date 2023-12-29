@@ -9,14 +9,14 @@
 
 ## Installation
     Web Page is in the link below
-[Code Quiz](https://neglon.github.io/coding-quiz/)
+[Code Quiz](https://neglon.github.io/work-day-scheduler/)
 
 ## Usage
     Upon visiting the page, you will be presented with the current date, and below that time blocks for every hour from 9am through 5pm, with each having a save button. Each block is a text input area where the user can enter information and click the save button to log that input into local storage. The page then maintains the input on the page even if the page is refreshed. Depending on the time of day the time blocks will either have a grey background to let the user know that that time has already passed, a red background for a time block if that is the current hour of the day, or a green background for future hours still yet to come.
    
-![Screenshots of top half of scheduler](assets/images/top.PNG)
+![Screenshots of top half of scheduler](Assets/images/top.PNG)
    
-![Screenshots of bottom half of scheduler](assets/images/bottom.PNG)
+![Screenshots of bottom half of scheduler](Assets/images/bottom.PNG)
 
 
 
